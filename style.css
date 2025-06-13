@@ -1,0 +1,765 @@
+/* styles.css */
+
+/* 1. Color palette */
+:root {
+  --black: #000000;
+  --dark-gray: #111111;
+  --gold: #BFA56A;
+  --translucent-black: rgba(0, 0, 0, 0.6);
+  --white: #FFFFFF;
+
+  /* new pink variables */
+  --pink:       #f5077c;
+  --pink-dark:  #d1056e; /* slightly darker for hover */
+}
+
+/* 2. Base & smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding-top: 60px;
+}
+
+/* 3. Translucent navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--translucent-black);
+  backdrop-filter: saturate(180%) blur(10px);
+  z-index: 999;
+  padding: 1rem 2rem;
+}
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: var(--white) !important;
+  font-weight: 500;
+}
+.navbar .nav-link:hover {
+  color: var(--gold) !important;
+}
+
+/* 4. Button styles */
+.btn-book,
+.btn-outline-gold {
+  display: inline-block;
+  text-decoration: none !important;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  line-height: 1;
+}
+
+/* 4a. Solid pink button */
+.btn-book {
+  background-color: var(--pink) !important;
+  color: var(--black) !important;
+  border: none !important;
+}
+.btn-book:hover {
+  background-color: var(--pink-dark) !important;
+  color: var(--black) !important;
+}
+
+/* 4b. Outline pink button */
+.btn-outline-gold {
+  background: transparent !important;
+  color: var(--pink) !important;
+  border: 2px solid var(--pink) !important;
+}
+.btn-outline-gold:hover {
+  background-color: var(--pink-dark) !important;
+  color: var(--white) !important;
+  border-color: var(--pink-dark) !important;
+}
+
+/* 4c. Full gold button (unchanged) */
+.btn-full {
+  background: var(--gold) !important;
+  color: var(--gold) !important;
+  border: 2px solid var(--gold) !important;
+}
+
+/* 4d. Hero‐section CTA button (pink) */
+.hero .btn-primary {
+  background-color: var(--pink) !important;
+  color: var(--black) !important;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.hero .btn-primary:hover {
+  background-color: var(--pink-dark) !important;
+  color: var(--black) !important;
+}
+
+/* ------------------------------------ */
+/* Hero Section                          */
+/* ------------------------------------ */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('images/hero.png') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 1rem;
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* 5. Section titles */
+.section-title {
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+/* 6. “Book Your Look” services */
+#services {
+  padding: 4rem 0;
+}
+#services .row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  justify-content: center !important;
+}
+#services .row > [class*="col-"] {
+  flex: 1 1 100% !important;
+  max-width: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+#services a.position-relative.d-block {
+  width: 100% !important;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+#services a.position-relative.d-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+#services .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#services a.position-relative.d-block:hover {
+  transform: scale(1.05);
+}
+#services a.position-relative.d-block:hover .overlay {
+  opacity: 1;
+}
+#services .overlay h3 {
+  color: var(--white);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Desktop breakpoint */
+@media (min-width: 992px) {
+  #services .row > [class*="col-"] {
+    flex: 1 1 calc((100% - 2rem) / 3) !important;
+    max-width: calc((100% - 2rem) / 3) !important;
+  }
+}
+
+/* 7. Featured Products overrides */
+#products {
+  background-color: var(--black) !important;
+  color: var(--white);
+  padding: 4rem 0;
+}
+#products .card {
+  background-color: var(--dark-gray);
+  border: none;
+}
+#products .badge {
+  background-color: var(--gold) !important;
+  color: var(--black) !important;
+  font-size: 0.75rem;
+  padding: 0.4em 0.7em;
+}
+#products .btn-outline-primary {
+  background: transparent !important;
+  border-color: var(--pink) !important;
+  color: var(--pink) !important;
+}
+#products .btn-outline-primary:hover {
+  background-color: var(--pink-dark) !important;
+  color: var(--white) !important;
+  border-color: var(--pink-dark) !important;
+}
+
+/* 8. About section */
+#about img {
+  border-radius: 0.5rem;
+}
+
+/* 9. Testimonial slider */
+.carousel-inner blockquote {
+  font-size: 1rem;
+  color: var(--white);
+}
+.carousel-inner .blockquote-footer {
+  color: var(--gold);
+}
+
+/* 10. CTA section */
+.cta {
+  background-color: var(--dark-gray);
+  padding: 4rem 0;
+}
+.cta h2 {
+  color: var(--gold);
+}
+.cta p {
+  color: var(--white);
+}
+.cta .btn-light {
+  background-color: var(--pink) !important;
+  color: var(--black) !important;
+  border: none !important;
+}
+.cta .btn-light:hover {
+  background-color: var(--pink-dark) !important;
+}
+.cta .btn-outline-light {
+  background: transparent !important;
+  color: var(--pink) !important;
+  border: 2px solid var(--pink) !important;
+}
+.cta .btn-outline-light:hover {
+  background-color: var(--pink-dark) !important;
+  color: var(--white) !important;
+  border-color: var(--pink-dark) !important;
+}
+
+/* 11. Footer */
+footer {
+  background-color: var(--black);
+  padding: 2rem 0;
+}
+footer a {
+  color: var(--white);
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+}
+footer a:hover {
+  color: var(--gold);
+}
+footer i {
+  font-size: 1.25rem;
+  color: var(--white);
+  margin: 0 0.5rem;
+}
+footer .small {
+  color: var(--dark-gray);
+  margin-top: 0.5rem;
+}
+
+/* 12. Utility */
+.row.g-4 {
+  margin-top: 2rem;
+}
+
+/* 13. New Arrivals: background + vertical fade */
+#new-arrivals {
+  position: relative;
+  background-image: url("images/productbg.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+#new-arrivals::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 20%;
+  background: linear-gradient(to bottom, var(--black) 0%, rgba(0,0,0,0) 100%);
+  z-index: 0;
+}
+#new-arrivals::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 20%;
+  background: linear-gradient(to top, var(--black) 0%, rgba(0,0,0,0) 100%);
+  z-index: 0;
+}
+#new-arrivals .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* New Arrivals – mobile slider */
+#new-arrivals .row {
+  display: flex !important;
+  gap: 1.5rem !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+#new-arrivals .row::-webkit-scrollbar {
+  height: 6px;
+}
+#new-arrivals .row::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+#new-arrivals .row > [class*="col-"] {
+  border: 5px solid var(--gold);
+  background-color: var(--black);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+#new-arrivals .row > [class*="col-"]:hover {
+  transform: scale(1.05);
+}
+
+/* Desktop – 3-up */
+@media (min-width: 992px) {
+  #new-arrivals .container {
+    max-width: none;
+    overflow-x: visible;
+  }
+  #new-arrivals .row {
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    overflow-x: visible !important;
+    padding-bottom: 0;
+  }
+  #new-arrivals .row > [class*="col-"] {
+    flex: 0 0 calc((100% - 2 * 1.5rem) / 3) !important;
+    width: auto !important;
+    padding: 1rem 0.5rem;
+  }
+  #new-arrivals .row > [class*="col-"] img {
+    height: auto !important;
+  }
+}
+
+/* Desktop – 4-per-row */
+@media (min-width: 992px) {
+  #new-arrivals .row {
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+  }
+  #new-arrivals .row > [class*="col-"] {
+    flex: 0 0 calc((100% - 3 * 1rem) / 4) !important;
+    max-width: calc((100% - 3 * 1rem) / 4) !important;
+  }
+}
+
+/* About Us photo outline + lift */
+.about-photo-wrapper {
+  flex: 0 0 auto;
+  max-width: 400px;
+}
+.about-photo {
+  width: 100%;
+  border: 2px solid var(--pink);
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-photo:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+#about-us .about-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+#about-us {
+  background-color: var(--black);
+}
+@media (max-width: 991px) {
+  .about-content .btn-book,
+  .about-content .btn-outline-gold {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Testimonials – horizontal scroll cards */
+#testimonials {
+  background-color: transparent;
+}
+#testimonials .testimonial-row {
+  gap: 2rem;
+  padding-bottom: 1rem;
+  --bs-gutter-x: 0;
+}
+#testimonials .testimonial-row::-webkit-scrollbar {
+  height: 6px;
+}
+#testimonials .testimonial-row::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+.testimonial-card {
+  background-color: var(--dark-gray);
+  border: 2px solid var(--pink-dark);
+  border-radius: 0.5rem;
+  min-width: 250px;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: scale(1.05);
+}
+.testimonial-card blockquote {
+  font-style: italic;
+  color: var(--white);
+  margin: 0 auto 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.testimonial-card .text-gold {
+  color: var(--pink);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   LOADING CURTAIN STYLES
+   ──────────────────────────────────────────────────────────────────────────── */
+#loading-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #f7cee1;
+  z-index: 2000;
+  overflow: hidden;
+}
+.loading-line {
+  position: absolute;
+  height: 4px;
+  background-color: var(--pink-dark);
+}
+.loading-line.top {
+  top: 40%; left: 0;
+  width: 0;
+  animation: slideInLTR 3s ease-out forwards;
+}
+.loading-line.bottom {
+  top: 60%; right: 0;
+  width: 0;
+  animation: slideInRTL 3s ease-out forwards;
+}
+@keyframes slideInLTR { to { width: 100%; } }
+@keyframes slideInRTL { to { width: 100%; } }
+.loading-text {  
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--pink);
+  text-align: center;
+  white-space: nowrap;
+}
+#loading-overlay.fade-out {
+  animation: fadeOutOverlay 0.5s ease-in forwards;
+}
+@keyframes fadeOutOverlay {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Transform CTA & Hero Text Box (kept as previously)
+───────────────────────────────────────────────────────── */
+/* …remaining rules unchanged… */
+
+
+/* ─────────────────────────────────────────────────────────
+   2A) Transform CTA – Background Container
+   ───────────────────────────────────────────────────────── */
+#transform-cta .transform-bg {
+  /* Use your swirling background exactly as the “Renew/Restore/Reveal” section */
+  background: url('images/wp12821797.webp') center/cover no-repeat;
+  position: relative;
+  padding: 6rem 0;
+}
+
+/* ─────────────────────────────────────────────────────────
+   2B) Transform CTA – Glass Panel (centers all content)
+   ───────────────────────────────────────────────────────── */
+#transform-cta .transform-panel {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* ─────────────────────────────────────────────────────────
+   2C) Transform CTA – Heading / Paragraph / Button styling
+   ───────────────────────────────────────────────────────── */
+#transform-cta .transform-panel h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#transform-cta .transform-panel p {
+  font-size: 1.125rem;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Use the same yellow/black button style you already have */
+#transform-cta .transform-panel .btn-primary {
+  background-color: var(--pink);
+  color: #000;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+#transform-cta .transform-panel .btn-primary:hover {
+  background-color: var(--pink-dark);
+  color: #000;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Add vertical fade at top & bottom of the swirl background
+───────────────────────────────────────────────────────── */
+#transform-cta .transform-bg {
+  background: url('images/wp12821797.webp') center/cover no-repeat;
+  position: relative;
+  padding: 6rem 0;
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 10%,
+      rgba(0,0,0,1) 90%,
+      rgba(0,0,0,0) 100%
+    );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,1) 10%,
+      rgba(0,0,0,1) 90%,
+      rgba(0,0,0,0) 100%
+    );
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* ─────────────────────────────────────────────────────────
+   2D) Responsive Adjustments
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  #transform-cta .transform-bg {
+    padding: 4rem 0;
+  }
+  #transform-cta .transform-panel {
+    padding: 1.5rem 1.25rem;
+    max-width: 90vw;
+  }
+  #transform-cta .transform-panel h2 {
+    font-size: 2rem;
+  }
+  #transform-cta .transform-panel p {
+    font-size: 1rem;
+  }
+  #transform-cta .transform-panel .btn-primary {
+    width: 100%;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+}
+
+/* -----------------------------------------------------------------
+   Glassmorphic Hero Text Box (wider, less tall)
+   ----------------------------------------------------------------- */
+.hero-text-box {
+  width: 100%;
+  max-width: 900px;
+  padding: 1.5rem 9rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-text-box h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.hero-text-box p {
+  font-size: 1.15rem;
+  margin-bottom: 1.75rem;
+  color: #ffffff;
+}
+
+/* Keep your button styling inside the box the same: */
+.hero-text-box .btn-primary {
+  background-color: #ffd700;
+  color: #000;
+  padding: 0.75rem 1.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.hero-text-box .btn-primary:hover {
+  background-color: #e6c200;
+}
+
+@media (max-width: 768px) {
+  .hero-text-box {
+    width: 90vw;
+    max-width: none;
+    margin: 1rem auto;
+    padding: 1rem 1rem;
+  }
+  .hero-text-box h1 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .hero-text-box p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .hero-text-box .btn-primary {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== Booking Form Styles ===== */
+.booking-form {
+  display: grid;
+  gap: 20px;
+  max-width: 360px;
+  margin: 0 auto 80px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.booking-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #2e2e2e;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="email"],
+.booking-form input[type="time"],
+.booking-form .flatpickr-input {
+  margin-top: 6px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.booking-form input[type="text"]:focus,
+.booking-form input[type="email"]:focus,
+.booking-form input[type="time"]:focus,
+.booking-form .flatpickr-input:focus {
+  outline: none;
+  border-color: #c89fa3;
+  box-shadow: 0 0 0 3px rgba(200,159,163,0.2);
+}
+
+/* Style the submit button to match .btn but full width */
+.booking-form button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.booking-form button:hover {
+  background: var(--pink-dark);
+}
